@@ -30,17 +30,15 @@ RUN apk --update add sudo \
 
 RUN ln -s /usr/bin/php7 /usr/bin/php
 RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-RUN adduser user -h /data/ -s /bin/bash -D
 RUN export SERVER_NAME=SERVER_NAME
 
 #############################################
 # Setup software in container
 #
 COPY sshd_config /etc/ssh/sshd_config
-COPY authorized_keys /data/.ssh/authorized_keys
+COPY authorized_keys /root/.ssh/authorized_keys
 ADD start.sh /bin/start
 VOLUME ["/etc/ssh/"]
-VOLUME ["/data/"]
 EXPOSE 22
 ENTRYPOINT ["/bin/bash"]
 CMD ["start"]
