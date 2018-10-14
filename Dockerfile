@@ -43,6 +43,16 @@ RUN cp /var/www/localhost/htdocs/config.php.sample /var/www/localhost/htdocs/con
 RUN chown -R apache:apache /var/www/localhost/htdocs
 RUN find /var/www/localhost/htdocs -type f -exec sudo chmod 0666 {} \;
 RUN find /var/www/localhost/htdocs -type d -exec sudo chmod 0777 {} \;
+RUN sed -i 's/None/All/g' /etc/apache2/httpd.conf
+RUN sed -i 's/none/All/g' /etc/apache2/httpd.conf
+RUN echo "ServerName localhost" | sudo tee -a /etc/apache2/httpd.conf
+RUN sed -i '/short_open_tag/s/Off/On/' /etc/php7/php.ini
+RUN sed -i '/error_reporting/s/~E_DEPRECATED & ~E_STRICT/~E_NOTICE/' /etc/php7/php.ini
+RUN sed -i '/max_execution_time/s/30/90/' /etc/php7/php.ini
+RUN sed -i '/max_input_time/s/60/180/' /etc/php7/php.ini
+RUN sed -i '/post_max_size/s/8/200/' /etc/php7/php.ini
+RUN sed -i '/upload_max_filesize/s/2/50/' /etc/php7/php.ini
+RUN sed -i '/max_file_uploads/s/20/150/' /etc/php7/php.ini
 
 #############################################
 # Setup software in container
