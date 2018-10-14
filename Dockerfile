@@ -28,14 +28,10 @@ RUN apk --update add sudo \
 	wget \
 	bash
 
-RUN ln -s /usr/bin/php7 /usr/bin/php \
-	export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
-	adduser user -h /data/ -s /bin/bash -D \
-	export SERVER_NAME=SERVER_NAME \
-	mkdir -p /data/.ssh \
-	mkdir -p /data/.ssh \
-	chmod 700 /data/.ssh \
-    chown user:user /data/.ssh
+RUN ln -s /usr/bin/php7 /usr/bin/php
+RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUN adduser user -h /data/ -s /bin/bash -D
+RUN export SERVER_NAME=SERVER_NAME
 
 #############################################
 # Setup software in container
@@ -46,7 +42,5 @@ ADD start.sh /bin/start
 VOLUME ["/etc/ssh/"]
 VOLUME ["/data/"]
 EXPOSE 22
-RUN chmod 400 /data/.ssh/authorized_keys
-RUN chown user:user /data/.ssh/authorized_keys
 ENTRYPOINT ["/bin/bash"]
 CMD ["start"]
