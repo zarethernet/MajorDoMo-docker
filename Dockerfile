@@ -33,14 +33,14 @@ ADD php.ini /etc/php/5.6/cli/conf.d/10-majordomo.ini
 RUN a2enmod rewrite
 
 # majordomo
-cd /root
-git clone https://github.com/sergejey/majordomo.git
-cp -rp ~/majordomo/* /var/www
-cp -rp ~/majordomo/.htaccess /var/www
-cp /var/www/config.php.sample /var/www/config.php
-chown -R www-data:www-data /var/www
-find /var/www/ -type f -exec chmod 0666 {} \;
-find /var/www/ -type d -exec chmod 0777 {} \;
+RUN cd /root
+RUN git clone https://github.com/sergejey/majordomo.git
+RUN cp -rp ~/majordomo/* /var/www
+RUN cp -rp ~/majordomo/.htaccess /var/www
+RUN cp /var/www/config.php.sample /var/www/config.php
+RUN chown -R www-data:www-data /var/www
+RUN find /var/www/ -type f -exec chmod 0666 {} \;
+RUN find /var/www/ -type d -exec chmod 0777 {} \;
 
 # supervisord
 RUN apt-get -y install supervisor
