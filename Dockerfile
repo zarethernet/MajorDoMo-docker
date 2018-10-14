@@ -12,7 +12,7 @@ ENV TERM xterm
 # Install software
 #
 RUN apt-get update
-RUN apt-get -y install apt-utils
+RUN apt-get -y install apt-utils git mc
 
 # apache
 RUN apt-get -y install apache2 apache2-utils
@@ -31,6 +31,16 @@ ADD php.ini /etc/php/5.6/apache2/conf.d/10-majordomo.ini
 ADD php.ini /etc/php/5.6/cli/conf.d/10-majordomo.ini
 
 RUN a2enmod rewrite
+
+# majordomo
+cd /root
+git clone https://github.com/sergejey/majordomo.git
+cp -rp ~/majordomo/* /var/www
+cp -rp ~/majordomo/.htaccess /var/www
+cp /var/www/config.php.sample /var/www/config.php
+chown -R www-data:www-data /var/www
+find /var/www/ -type f -exec chmod 0666 {} \;
+find /var/www/ -type d -exec chmod 0777 {} \;
 
 # supervisord
 RUN apt-get -y install supervisor
