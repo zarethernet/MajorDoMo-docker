@@ -33,10 +33,9 @@ ADD php.ini /etc/php/5.6/cli/conf.d/10-majordomo.ini
 RUN a2enmod rewrite
 
 # majordomo
-RUN cd /root
-RUN git clone https://github.com/sergejey/majordomo.git
-RUN cp -rp ~/majordomo/* /var/www
-RUN cp -rp ~/majordomo/.htaccess /var/www
+RUN git clone https://github.com/sergejey/majordomo.git /root/majordomo
+RUN cp -rp /root/majordomo/* /var/www
+RUN cp -rp /root/majordomo/.htaccess /var/www
 RUN cp /var/www/config.php.sample /var/www/config.php
 RUN chown -R www-data:www-data /var/www
 RUN find /var/www/ -type f -exec chmod 0666 {} \;
