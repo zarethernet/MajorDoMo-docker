@@ -43,6 +43,6 @@ COPY sshd_config /etc/ssh/sshd_config
 COPY authorized_keys /root/.ssh/authorized_keys
 ADD start.sh /bin/start
 VOLUME ["/etc/ssh/"]
-EXPOSE 22
+EXPOSE 22 80
 ENTRYPOINT ["/bin/bash"]
 CMD ["start"]
