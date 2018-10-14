@@ -1,8 +1,10 @@
-version: "1"
+version: "2"
 
 services:
   openssh:
     build: .
+    volumes:
+    - ./ssh:/data/.ssh:ro
     ports:
     - 22
     restart: always

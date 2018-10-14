@@ -1,31 +1,25 @@
-#Port 22
-#ListenAddress 0.0.0.0
-
+Port 22
 Protocol 2
 AllowTcpForwarding no
 RSAAuthentication yes
-AuthorizedKeysFile	.ssh/authorized_keys
-#SyslogFacility AUTHPRIV
+AuthorizedKeysFile .ssh/authorized_keys
 ChallengeResponseAuthentication no
-GSSAPIAuthentication yes
-GSSAPICleanupCredentials yes
+GSSAPIAuthentication no
 UsePAM yes
-
 Compression yes
 GatewayPorts no
 LogLevel VERBOSE
 LoginGraceTime 50s
-PermitRootLogin yes
+PermitRootLogin no
 MaxAuthTries 6
 MaxStartups 10
-PasswordAuthentication yes
+PasswordAuthentication no
 PermitUserEnvironment no
 PidFile /var/run/sshd.pid
 PrintLastLog yes
 PrintMotd no
 PubkeyAuthentication yes
 StrictModes yes
-#Subsystem	sftp	/usr/libexec/openssh/sftp-server
 TCPKeepAlive no
 UseDNS no
 UseLogin no
@@ -33,9 +27,4 @@ UsePrivilegeSeparation yes
 X11DisplayOffset 10
 X11Forwarding no
 X11UseLocalhost yes
-
-#AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
-#AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
-#AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
-#AcceptEnv XMODIFIERS
 PermitTunnel no
