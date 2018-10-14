@@ -23,13 +23,19 @@ RUN apk --update add sudo \
     php7-mcrypt \
     php7-opcache \
     php7-xml \
-	openssh
+	openssh \
+	curl \
+	wget \
+	bash
 
 #############################################
 # Setup software in container
 #
+ADD start.sh /bin/start
+VOLUME ["/etc/ssh/"]
+EXPOSE 22
 RUN export SERVER_NAME=SERVER_NAME
 RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN ln -s /usr/bin/php7 /usr/bin/php
-RUN ssh-keygen -A
-RUN /usr/sbin/sshd -f /etc/ssh/sshd_config
+ENTRYPOINT ["/bin/bash"]
+CMD ["start"]

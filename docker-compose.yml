@@ -1,0 +1,8 @@
+version: "1"
+
+services:
+  openssh:
+    build: .
+    ports:
+    - 22
+    restart: always
