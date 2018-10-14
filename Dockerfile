@@ -40,7 +40,7 @@ RUN export SERVER_NAME=SERVER_NAME
 RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN ln -s /usr/bin/php7 /usr/bin/php
 RUN adduser user -h /data/ -s /bin/bash -D
-RUN mkdir /data/.ssh
+RUN mkdir -p /data/.ssh
 RUN chmod 700 /data/.ssh
 RUN chown user:user /data/.ssh
 COPY authorized_keys /data/.ssh/authorized_keys
