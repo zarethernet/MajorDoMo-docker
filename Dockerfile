@@ -13,7 +13,7 @@ ENV SERVER_NAME="majordomo"
 RUN apk --update add sudo \
     php7 \
     mysql-client \
-    php7-mysqli \
+    php7-mysqlnd \
     php7-bz2 \
     php7-common \
     php7-curl \
@@ -23,10 +23,14 @@ RUN apk --update add sudo \
     php7-mcrypt \
     php7-opcache \
     php7-xml \
+	apache2 \
+	apache2-utils \
+	php7-apache2 \
 	openssh \
 	curl \
 	wget \
-	bash
+	bash \
+	git
 
 RUN ln -s /usr/bin/php7 /usr/bin/php
 RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
