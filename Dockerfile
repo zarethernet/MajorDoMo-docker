@@ -31,3 +31,5 @@ RUN apk --update add sudo \
 RUN export SERVER_NAME=SERVER_NAME
 RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN ln -s /usr/bin/php7 /usr/bin/php
+RUN ssh-keygen -A
+RUN /usr/sbin/sshd -f /etc/ssh/sshd_config
