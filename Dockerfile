@@ -20,8 +20,6 @@ RUN apt-get install -y libapache2-mod-php libapache2-mod-php7.0
 RUN service apache2 stop
 RUN a2enmod rewrite
 ADD apache2.conf /etc/apache2/sites-available/000-default.conf
-RUN mkdir -p /var/www/logs
-RUN chown www-data:www-data /var/www/logs
 
 # php
 RUN apt-get install -y php7.0-bz2 php7.0-cli php7.0-common
@@ -38,6 +36,8 @@ ADD php.ini /etc/php/7.0/cli/conf.d/10-majordomo.ini
 # majordomo
 RUN git clone https://github.com/sergejey/majordomo.git /root/majordomo
 RUN rm -Rf /var/www/*
+RUN mkdir -p /var/www/logs
+RUN chown www-data:www-data /var/www/logs
 RUN cp -rp /root/majordomo/* /var/www
 RUN cp -rp /root/majordomo/.htaccess /var/www
 RUN rm -Rf /root/majordomo
