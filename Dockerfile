@@ -25,7 +25,6 @@ RUN apk --update add sudo \
     php7-xml \
 	openssh
 
-RUN rc-update add sshd
 RUN /etc/init.d/sshd start
 
 #############################################
