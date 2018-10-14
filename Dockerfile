@@ -17,6 +17,8 @@ RUN apt-get -y install apt-utils git mc
 # apache
 RUN apt-get -y install apache2 apache2-utils
 ADD apache2.conf /etc/apache2/sites-available/000-default.conf
+RUN mkdir -p /var/www/logs
+RUN chown www-data:www-data /var/www/logs
 
 # php
 ADD ondrejphp.list /etc/apt/sources.list.d/ondrejphp.list
