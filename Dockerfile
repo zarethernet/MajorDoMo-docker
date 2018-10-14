@@ -25,8 +25,6 @@ RUN apk --update add sudo \
     php7-xml \
 	openssh
 
-RUN /etc/init.d/sshd start
-
 #############################################
 # Setup software in container
 #
