@@ -26,16 +26,16 @@ RUN apk --update add sudo \
 	openssh \
 	curl \
 	wget \
-	bash \
-	ln -s /usr/bin/php7 /usr/bin/php \
+	bash
+
+RUN ln -s /usr/bin/php7 /usr/bin/php \
 	export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
 	adduser user -h /data/ -s /bin/bash -D \
 	export SERVER_NAME=SERVER_NAME \
 	mkdir -p /data/.ssh \
-	RUN mkdir -p /data/.ssh \
-	RUN chmod 700 /data/.ssh \
-    RUN chown user:user /data/.ssh
-	
+	mkdir -p /data/.ssh \
+	chmod 700 /data/.ssh \
+    chown user:user /data/.ssh
 
 #############################################
 # Setup software in container
