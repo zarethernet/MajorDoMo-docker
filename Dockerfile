@@ -35,6 +35,14 @@ RUN apk --update add sudo \
 RUN ln -s /usr/bin/php7 /usr/bin/php
 RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN export SERVER_NAME=SERVER_NAME
+RUN git clone https://github.com/sergejey/majordomo.git /root/majordomo
+RUN rm -f /var/www/localhost/htdocs/index.html
+RUN cp -rp /root/majordomo/* /var/www/localhost/htdocs
+RUN cp -rp /root/majordomo/.htaccess /var/www/localhost/htdocs
+RUN cp /var/www/localhost/htdocs/config.php.sample /var/www/localhost/htdocs/config.php
+RUN chown -R apache:apache /var/www/localhost/htdocs
+RUN find /var/www/localhost/htdocs -type f -exec sudo chmod 0666 {} \;
+RUN find /var/www/localhost/htdocs -type d -exec sudo chmod 0777 {} \;
 
 #############################################
 # Setup software in container
