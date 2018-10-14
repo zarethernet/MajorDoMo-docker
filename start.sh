@@ -9,5 +9,4 @@ EXEC=$(which "$DAEMON")
 
 ARGS="-f /etc/apache2/httpd.conf -D FOREGROUND"
 
-info "Starting ${DAEMON}..."
 ${EXEC} ${ARGS} &
